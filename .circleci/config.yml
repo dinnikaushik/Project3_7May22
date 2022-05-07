@@ -219,6 +219,10 @@ jobs:
             curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
             unzip awscliv2.zip
             sudo ./aws/install
+      - run:
+          name: set default region 
+          command:  |
+            aws configure set default.region us-west-2        
       - run: 
           name: Ensure back-end infrastructure exists
           command: |
@@ -228,7 +232,11 @@ jobs:
               --parameter-overrides ID="${CIRCLE_WORKFLOW_ID:0:7}"\
               --tags project=udapeople  
               # exit 1
-
+      - run:
+          name: set default region 
+          command:  |
+            aws configure set default.region us-west-2  
+      
       - run:
           name: Ensure front-end infrastructure exist 
           command: |
@@ -351,7 +359,7 @@ jobs:
       - run:
           name: smoke test
           command: |
-            URL="http://udapeople-s3-${CIRCLE_WORKFLOW_ID:0:7}.s3-website-us-west-1.amazonaws.com"
+            URL="http://udapeople-s3-${CIRCLE_WORKFLOW_ID:0:7}.s3-website-us-west-2.amazonaws.com"
             # Test if website exists
             if curl -s ${URL} | grep "Welcome"
             then
@@ -596,6 +604,10 @@ jobs:
       - attach_workspace:
           at: ./
       - run:
+          name: set default region 
+          command:  |
+            aws configure set default.region us-west-2        
+      - run:
           name: Install dependencies
           command: |
             sudo apt update
@@ -669,6 +681,10 @@ jobs:
             aws --version
       
       - run:
+          name: set default region 
+          command:  |
+            aws configure set default.region us-west-2        
+      - run:
           name: Update cloudfront distribution
           command: |
             ls versions
@@ -719,6 +735,10 @@ jobs:
       - checkout
       - attach_workspace:
           at: ./
+      - run:
+          name: set default region 
+          command:  |
+            aws configure set default.region us-west-2        
       - run:
           name: Install dependencies
           command: |
