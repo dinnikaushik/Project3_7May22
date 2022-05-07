@@ -33,9 +33,9 @@ commands:
             sudo apt update
             sudo apt install software-properties-common
             sudo apt-get update && sudo apt-get install -yy less
-            curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-            unzip awscliv2.zip
-            sudo ./aws/install
+            #curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+            #unzip awscliv2.zip
+            #sudo ./aws/install
             echo "Destroying environment: << parameters.workflow_id >> "
             aws s3 rm s3://udapeople-s3-${CIRCLE_WORKFLOW_ID:0:7} --recursive
             # aws s3 rb s3://udapeople-s3-${CIRCLE_WORKFLOW_ID:0:7}
