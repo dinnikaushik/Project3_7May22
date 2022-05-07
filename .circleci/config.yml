@@ -800,10 +800,10 @@ workflows:
               only: [master]   
       - configure-infrastructure:
           requires: [deploy-infrastructure]
-      #- run-migrations:
-      #    requires: [configure-infrastructure]
-      - build-and-deploy-new-frontend
-      #    requires: [run-migrations]
+      - run-migrations:
+          requires: [configure-infrastructure]
+      - build-and-deploy-new-frontend:
+          requires: [run-migrations]
       - build-new-backend:
           requires: [build-and-deploy-new-frontend]
       - deploy-backend:
