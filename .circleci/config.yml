@@ -58,8 +58,8 @@ commands:
           when: on_fail
           command: |
             # Curl command here to see if there was a successful migration associated with the workflow id, store result in SUCCESS variable
-            if ((curl -s http://udapeople-s3-${CIRCLE_WORKFLOW_ID:0:7}.s3-website.us-west-2.amazonaws.com/ | grep "Hello"));
-            then
+            #if ((curl -s http://udapeople-s3-${CIRCLE_WORKFLOW_ID:0:7}.s3-website.us-west-2.amazonaws.com/ | grep "Hello"));
+            #then
             # SUCCESS = 1
             # if(( $SUCCESS==1 )); 
             # then
@@ -393,15 +393,15 @@ jobs:
             unzip awscliv2.zip
             sudo ./aws/install
      
-      - run:
-          name: check API_URL variable
-          command: |
-            pwd
-            cd backend && ls -la 
-            echo $API_URL
-            cd .. && ls -la
-            cd frontend
-            cat .env
+      #- run:
+      #    name: check API_URL variable
+      #    command: |
+      #      pwd
+      #      cd backend && ls -la 
+      #     echo $API_URL
+      #      cd .. && ls -la
+      #      cd frontend
+      #      cat .env
 
       - run:
           name: Run DB migrations
