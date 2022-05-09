@@ -408,7 +408,7 @@ jobs:
             cd ~/project/backend
             npm install 
             # npm install 
-            npm audit-fix
+            npm audit fix
             #npm audit fix --audit-level=critical --force
             #npm audit-fix --force
             sudo npm run migrations > migration.txt 
