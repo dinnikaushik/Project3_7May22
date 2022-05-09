@@ -406,11 +406,8 @@ jobs:
           name: Run DB migrations
           working_directory: ./
           command: |
-            # Your code here
-            pwd
-            cd backend && ls -la
-            npm -v
-            node -v
+            cd ~/project/backend
+            npm install 
            # npm install 
            # npm audit-fix
            # npm audit fix --audit-level=critical --force
