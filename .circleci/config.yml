@@ -412,14 +412,13 @@ jobs:
             cd backend && ls -la
             npm -v
             node -v
-            npm i 
-            npm audit fix
-            npm i migrations@1.0.3
-          
+            npm install 
+            npm audit-fix
+                        
             # npm audit fix --audit-level=critical --force
             # npm audit fix --force
             
-            sudo npm run migrations > migration.txt
+            sudo npm run migrations > migration.txt 
             export migration_status=$(cat migration.txt | grep -c "has been executed successfully")
            
             
@@ -784,36 +783,36 @@ jobs:
 workflows:
   default:
     jobs:
-      - build-frontend
-      - build-backend
-      - test-frontend:
-          requires: [build-frontend]
-      - scan-frontend:
-          requires: [build-frontend]
-      - test-backend:
-          requires: [build-backend]
-      - scan-backend:
-          requires: [build-backend]
-      - deploy-infrastructure:
-          requires: [test-backend,test-frontend]
-          filters:
-            branches:
-              only: [master]   
-      - configure-infrastructure:
-          requires: [deploy-infrastructure]
-      - run-migrations:
-          requires: [configure-infrastructure]
-      - build-and-deploy-new-frontend:
-          requires: [run-migrations]
-      - build-new-backend:
-          requires: [build-and-deploy-new-frontend]
-      - deploy-backend:
-          requires: [build-new-backend]
-      - smoke-test-web-site:
-          requires: [deploy-backend, build-and-deploy-new-frontend]
-      - smoke-test:
-          requires: [deploy-backend, build-and-deploy-new-frontend]
-      - cloudfront-update:
-          requires: [smoke-test]
+     # - build-frontend
+     # - build-backend
+     # - test-frontend:
+     #     requires: [build-frontend]
+     # - scan-frontend:
+     #     requires: [build-frontend]
+     # - test-backend:
+     #     requires: [build-backend]
+     # - scan-backend:
+     #     requires: [build-backend]
+     # - deploy-infrastructure:
+     #     requires: [test-backend,test-frontend]
+     #     filters:
+     #       branches:
+     #         only: [master]   
+     # - configure-infrastructure:
+     #     requires: [deploy-infrastructure]
+      - run-migrations
+     #     requires: [configure-infrastructure]
+     # - build-and-deploy-new-frontend:
+     #     requires: [run-migrations]
+     # - build-new-backend:
+     #     requires: [build-and-deploy-new-frontend]
+     # - deploy-backend:
+     #     requires: [build-new-backend]
+     # - smoke-test-web-site:
+     #     requires: [deploy-backend, build-and-deploy-new-frontend]
+     # - smoke-test:
+     #     requires: [deploy-backend, build-and-deploy-new-frontend]
+     # - cloudfront-update:
+     #     requires: [smoke-test]
       # - cleanup:
       #     requires: [cloudfront-update]
