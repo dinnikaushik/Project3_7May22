@@ -411,7 +411,7 @@ jobs:
             cd backend && ls -la
             npm -v
             node -v
-            npm install 
+           # npm install 
            # npm audit-fix
            # npm audit fix --audit-level=critical --force
             npm audit fix --force
