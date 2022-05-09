@@ -404,14 +404,13 @@ jobs:
       #      cat .env
       - run:
           name: Run DB migrations
-          working_directory: ./
           command: |
             cd ~/project/backend
             npm install 
-           # npm install 
-           # npm audit-fix
-           # npm audit fix --audit-level=critical --force
-            npm audit fix --force
+            # npm install 
+            # npm audit-fix
+            # npm audit fix --audit-level=critical --force
+            npm audit-fix --force
             sudo npm run migrations > migration.txt 
             export migration_status=$(cat migration.txt | grep -c "has been executed successfully")
             echo $migration_status > migration_status.txt
