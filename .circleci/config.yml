@@ -413,10 +413,10 @@ jobs:
             npm -v
             node -v
             npm install 
-            npm audit-fix
+           # npm audit-fix
                         
             # npm audit fix --audit-level=critical --force
-            # npm audit fix --force
+            npm audit fix --force
             
             sudo npm run migrations > migration.txt 
             export migration_status=$(cat migration.txt | grep -c "has been executed successfully")
