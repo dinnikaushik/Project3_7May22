@@ -420,6 +420,7 @@ jobs:
       - run:
           name: Run DB migrations
           command: |
+            sudo npm cache clean -f
             cd ~/project/backend
             sudo npm install 
             # npm install 
