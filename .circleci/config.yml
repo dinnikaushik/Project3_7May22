@@ -391,7 +391,7 @@ jobs:
             ENVIRONMENT=production
             VERSION=1
             TYPEORM_CONNECTION=postgres
-            TYPEORM_HOST=localhost
+            TYPEORM_HOST=database-2.cu9uypieo4eb.us-west-2.rds.amazonaws.com
             TYPEORM_PORT=5432
             TYPEORM_USERNAME=postgres
             TYPEORM_PASSWORD=postgres
@@ -789,25 +789,25 @@ jobs:
 workflows:
   default:
     jobs:
-      - build-frontend
-      - build-backend
-      - test-frontend:
-          requires: [build-frontend]
-      - scan-frontend:
-          requires: [build-frontend]
-      - test-backend:
-          requires: [build-backend]
-      - scan-backend:
-          requires: [build-backend]
-      - deploy-infrastructure:
-          requires: [test-backend,test-frontend]
-          filters:
-            branches:
-              only: [master]   
-      - configure-infrastructure:
-          requires: [deploy-infrastructure]
-      - run-migrations:
-          requires: [configure-infrastructure]
+      #- build-frontend
+      #- build-backend
+      #- test-frontend:
+      #    requires: [build-frontend]
+      #- scan-frontend:
+      #    requires: [build-frontend]
+      #- test-backend:
+      #    requires: [build-backend]
+      #- scan-backend:
+      #    requires: [build-backend]
+      #- deploy-infrastructure:
+      #    requires: [test-backend,test-frontend]
+      #    filters:
+      #      branches:
+      #        only: [master]   
+      #- configure-infrastructure:
+      #    requires: [deploy-infrastructure]
+      - run-migrations
+      #    requires: [configure-infrastructure]
       - build-and-deploy-new-frontend:
           requires: [run-migrations]
       - build-new-backend:
