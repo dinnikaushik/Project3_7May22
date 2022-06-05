@@ -422,7 +422,6 @@ jobs:
           command: |
             sudo npm cache clean -f
             cd ~/project/backend
-            nvm install v14.18.1
             npm install 
             # npm install 
             #npm audit fix
