@@ -422,14 +422,9 @@ jobs:
           command: |
             sudo npm cache clean -f
             cd ~/project/backend
-            npm -v
-            node -v
-            npm i 
-            npm audit fix
-            npm i migrations@1.0.3
-            #npm install 
+            sudo npm install 
             # npm install 
-            #npm audit fix
+            sudo npm audit fix
             #npm audit fix --audit-level=critical --force
             #sudo npm audit fix
             sudo npm run migrations > migration.txt 
