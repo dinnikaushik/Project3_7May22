@@ -425,8 +425,8 @@ jobs:
           name: Run DB migrations
           command: |
             sudo npm cache clean -f
-            sudo cd ~/project/backend
-            sudo npm install 
+            cd ~/project/backend
+            npm install 
             sudo npm audit fix
             sudo npm run migrations > migration.txt 
             export migration_status=$(cat migration.txt | grep -c "has been executed successfully")
