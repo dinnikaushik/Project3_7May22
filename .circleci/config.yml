@@ -605,12 +605,11 @@ jobs:
 
   smoke-test:
     docker:
-      #- image: cimg/base:2022.01
-      - image: amazon/aws-cli 
+      - image: cimg/base:2022.01
+      #- image: amazon/aws-cli 
     steps:
       - checkout
-      - attach_workspace:
-          at: ./
+
       - run:
           name: set default region 
           command:  |
@@ -619,6 +618,8 @@ jobs:
           name: Install tar
           command: |
             yum -y install tar gzip
+      - attach_workspace:
+          at: ./      
       - run:
           name: Install dependencies
           command: |
