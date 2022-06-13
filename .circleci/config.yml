@@ -811,10 +811,10 @@ workflows:
       #    filters:
       #     branches:
       #        only: [master]   
-      #- configure-infrastructure:
-      #    requires: [deploy-infrastructure]
-      - run-migrations
-      #    requires: [configure-infrastructure]
+      - configure-infrastructure:
+          requires: [deploy-infrastructure]
+      - run-migrations:
+          requires: [configure-infrastructure]
       - build-and-deploy-new-frontend:
           requires: [run-migrations]
       - build-new-backend:
