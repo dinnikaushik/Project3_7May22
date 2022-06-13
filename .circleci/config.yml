@@ -806,25 +806,25 @@ workflows:
       #    requires: [build-backend]
       #- scan-backend:
       #    requires: [build-backend]
-      #- deploy-infrastructure:
+      - deploy-infrastructure:
       #    requires: [test-backend,test-frontend]
-      #    filters:
-      #     branches:
-      #        only: [master]   
-      #- configure-infrastructure:
-      #    requires: [deploy-infrastructure]
-      #- run-migrations:
-      #    requires: [configure-infrastructure]
-      #- build-and-deploy-new-frontend:
-      #    requires: [run-migrations]
-      #- build-new-backend:
-      #    requires: [build-and-deploy-new-frontend]
-      #- deploy-backend:
-      #    requires: [build-new-backend]
-      #- smoke-test-web-site:
-      #    requires: [deploy-backend, build-and-deploy-new-frontend]
-      - smoke-test
-      #    requires: [deploy-backend, build-and-deploy-new-frontend]
+          filters:
+           branches:
+              only: [master]   
+      - configure-infrastructure:
+          requires: [deploy-infrastructure]
+      - run-migrations:
+          requires: [configure-infrastructure]
+      - build-and-deploy-new-frontend:
+          requires: [run-migrations]
+      - build-new-backend:
+          requires: [build-and-deploy-new-frontend]
+      - deploy-backend:
+          requires: [build-new-backend]
+      - smoke-test-web-site:
+          requires: [deploy-backend, build-and-deploy-new-frontend]
+      - smoke-test:
+          requires: [deploy-backend, build-and-deploy-new-frontend]
       - cloudfront-update:
           requires: [smoke-test]
       - cleanup:
