@@ -1,7 +1,7 @@
 version: 2.1
   
 orbs:
-# Good for AWS CLI1
+# Good for AWS CLI
   aws-cli: circleci/aws-cli@2.0.6
 
 
@@ -806,11 +806,11 @@ workflows:
       #    requires: [build-backend]
       #- scan-backend:
       #    requires: [build-backend]
-      - deploy-infrastructure:
+      - deploy-infrastructure
       #    requires: [test-backend,test-frontend]
-          filters:
-           branches:
-              only: [master]   
+      #    filters:
+      #     branches:
+      #        only: [master]   
       - configure-infrastructure:
           requires: [deploy-infrastructure]
       - run-migrations:
